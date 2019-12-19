@@ -1,0 +1,90 @@
+{
+    "name": "Fortumo",
+    "description": "Fortumo is a digital enablement platform for app stores and digital service providers for user acquisition, monetization and retention. The company connects service providers with more than 350 mobile operators across Asia, Europe, Latin America, the M...",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/pull_image_09-06-2019-07-19-pm.jpg",
+    "tags": [
+        "api provider",
+        "billing",
+        "financial services",
+        "have api",
+        "have swagger",
+        "payments",
+        "profile",
+        "telecommunications"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/fortumo\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Fortumo Payments API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/pull_image_09-06-2019-07-19-pm.jpg",
+            "humanURL": "https:\/\/fortumo.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/fortumo-payments-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/fortumo-payments-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/fortumo-payments-api-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.fortumo.com"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.fortumo.com\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/fortumo"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/fortumo"
+        },
+        {
+            "type": "Email",
+            "url": "chinabd@fortumo.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@fortumo.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/fortumo"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/595-2019-09-06-19-23-53.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/595-2019-09-06-19-30-26.json"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/fortumo"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/fortumo.com\/"
+        }
+    ]
+}
