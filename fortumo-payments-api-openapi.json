@@ -1,0 +1,866 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "2.1.0",
+        "title": "Fortumo Payments API",
+        "description": "This document describes the Payments API product, as provided to Merchants by Fortumo. The intended audience are Merchants wishing to integrate to the APIs that Fortumo offers. It includes a detailed description for how to list all available Capabilities, Consumer Authorisations, Payments, Refunds, Messaging and Reports. Examples for specific parameters for requests are provided, including example requests and sequences.",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "http:\/\/api.fortumo.com\/"
+    ],
+    "paths": {
+        "\/capabilities\/{merchant}": {
+            "get": {
+                "summary": "Get Capabilities Merchant",
+                "description": "List of capabilities (payment methods, authorisation and charging flows) for all countries available for the Merchant.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "merchant",
+                        "in": "path",
+                        "description": "Merchant ID provided by Fortumo."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/authorisations": {
+            "post": {
+                "summary": "Post Authorisations",
+                "description": "When starting the purchase flow for a Consumer, first their authorisation has to be obtained. A charging token (received through local API) identifies the session. There are different authorisation flows to choose from depending on the payment method and the capabilities of the channel and Consumers device. It is recommended to always implement the PIN authorisation flow at least as a fallback authorisation method as this is the flow that is always available regardless of the payment channel.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/authorisations\/{charging_token}": {
+            "put": {
+                "summary": "Put Authorisations Charging Token",
+                "description": "Updates an ongoing authorisation session object. For example, once the PIN code has been obtained from the Consumer a PUT request shall be used to update the session state. This will trigger the validation and possibly updating the authorisation session state.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "charging_token",
+                        "in": "path",
+                        "description": "Charging token received via Fortumo callback to Local API."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/authorisations\/{charging_token}\/invalidate": {
+            "post": {
+                "summary": "Post Authorisations Charging Token Invalidate",
+                "description": "Invalidates an existing charging token. For example, merchant wants to invalidate a previously received charging token from Fortumo a POST request shall be used to invalidate that token.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "charging_token",
+                        "in": "path",
+                        "description": "Charging token received via Fortumo callback to Local API."
+                    }
+                ]
+            }
+        },
+        "\/payments": {
+            "post": {
+                "summary": "Post Payments",
+                "description": "After Consumer has authorised the Merchant to charge them and Merchant has received a charging_token with a 'verified' status, Merchant can start making Payment requests on behalf of the Consumer in order to charge them for services.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/refunds": {
+            "post": {
+                "summary": "Post Refunds",
+                "description": "In case a Consumer needs to be refunded for any charges Merchant has triggered, Merchant can initiate a new refund that will be processed by Fortumo or Payment Provider.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/messaging": {
+            "post": {
+                "summary": "Post Messaging",
+                "description": "Used in case Consumer needs to be notified of a service related activity, for example about a charge that is about to be triggered by the Merchant in 24h in case of subscription services.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/reports\/reconciliation": {
+            "post": {
+                "summary": "Post Reports Reconciliation",
+                "description": "Reporting API reconciliation endpoint can be used for operational transaction reconciliation between Merchant and Fortumo systems.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/reports\/reconciliation\/{merchant}\/{report_token}": {
+            "get": {
+                "summary": "Get Reports Reconciliation Merchant Report Token",
+                "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "merchant",
+                        "in": "path",
+                        "description": "Merchant ID provided by Fortumo."
+                    },
+                    {
+                        "name": "report_token",
+                        "in": "path",
+                        "description": "Report token"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "There has been a problem understanding the request. The most possible cause would be errors in the payload (e.g. mandatory field missing). "
+                    }
+                }
+            }
+        },
+        "\/reports\/revenue_detailed": {
+            "post": {
+                "summary": "Post Reports Revenue Detailed",
+                "description": "Reporting API detailed revenue report endpoint can be used for long term revenue reporting and reconciliation between Fortumo and Merchant Systems. Full report generation requests can be done for time periods of up to 31 days. This is a \"slow\" report, for real time reconciliation the reconciliation report endpoint should be used.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/reports\/revenue_detailed\/{merchant}\/{report_token}": {
+            "get": {
+                "summary": "Get Reports Revenue Detailed Merchant Report Token",
+                "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "merchant",
+                        "in": "path",
+                        "description": "Merchant ID provided by Fortumo."
+                    },
+                    {
+                        "name": "report_token",
+                        "in": "path",
+                        "description": "Report token"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "There has been a problem understanding the request. The most possible cause would be errors in the payload (e.g. mandatory field missing). "
+                    }
+                }
+            }
+        },
+        "\/reports\/revenue": {
+            "post": {
+                "summary": "Post Reports Revenue",
+                "description": "Reporting API revenue report endpoint can be used for long term aggregated revenue reporting and reconciliation between Fortumo and Merchant Systems. Revenue report requests can be done for time periods of up to 31 days. This is a \"slow\" report, for real time reconciliation the reconciliation report endpoint should be used.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/reports\/revenue\/{merchant}\/{report_token}": {
+            "get": {
+                "summary": "Get Reports Revenue Merchant Report Token",
+                "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "merchant",
+                        "in": "path",
+                        "description": "Merchant ID provided by Fortumo."
+                    },
+                    {
+                        "name": "report_token",
+                        "in": "path",
+                        "description": "Report token"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "There has been a problem understanding the request. The most possible cause would be errors in the payload (e.g. mandatory field missing). "
+                    }
+                }
+            }
+        },
+        "\/reports\/settlement_detailed": {
+            "post": {
+                "summary": "Post Reports Settlement Detailed",
+                "description": "Reporting API settlement report endpoint can be used for settlement period reporting and reconciliation between Fortumo and Merchant Systems. Settlement report requests can be done for a specific settlement month. This is a \"slow\" report, for real time reconciliation the reconciliation report endpoint should be used.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/reports\/settlement_detailed\/{merchant}\/{date}": {
+            "get": {
+                "summary": "Get Reports Settlement Detailed Merchant Date",
+                "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "merchant",
+                        "in": "path",
+                        "description": "Merchant ID provided by Fortumo."
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "Date as YYYY-MM"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "There has been a problem understanding the request. The most possible cause would be errors in the payload (e.g. mandatory field missing). "
+                    }
+                }
+            }
+        },
+        "\/subscriptions\/activation": {
+            "post": {
+                "summary": "Post Subscriptions Activation",
+                "description": "Activates subscription created during subscription authentication.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        },
+        "\/subscriptions\/cancel": {
+            "post": {
+                "summary": "Post Subscriptions Cancel",
+                "description": "Cancels subscription.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "An array of capabilities available for Merchant. If there are no capabilities available, an empty array is returned."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CountryCapabilities": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "description": "Country code",
+                        "type": "string"
+                    },
+                    "payment_methods": {
+                        "description": "Array of all supported payment methods e.g \"carrier_billing\" or \"credit_card\".",
+                        "type": "array"
+                    },
+                    "display_format": {
+                        "description": "Required price format to be used in a country e.g 'R$ [value] + tributos', where [value] must be replaced when displaying the price to the Consumer.",
+                        "type": "string"
+                    }
+                }
+            },
+            "payment_methods": {
+                "type": "array"
+            },
+            "PaymentMethodCapabilities": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Payment method name, for example 'carrier_billing'.",
+                        "type": "string"
+                    },
+                    "channel": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "channel": {
+                "type": "array"
+            },
+            "PaymentChannelCapabilities": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Payment method name, for example 'carrier_billing'.",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "Unique code identifying the payment channel.",
+                        "type": "string"
+                    },
+                    "authorisation_flows": {
+                        "description": "Authorisation flows supported by the channel e.g. 'pin', 'he' (header enrichment).",
+                        "type": "array"
+                    },
+                    "charging_flows": {
+                        "description": "Charging flows supported by the channel, e.g 'one_step', 'reserve_charge'.",
+                        "type": "array"
+                    },
+                    "transaction_ranges": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "MinMax": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "authorisation_flows": {
+                "type": "array"
+            },
+            "charging_flows": {
+                "type": "array"
+            },
+            "transaction_ranges": {
+                "type": "object"
+            },
+            "Authorisation": {
+                "type": "object",
+                "properties": {
+                    "flow": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "country": {
+                        "description": "Country code",
+                        "type": "string"
+                    },
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "item_description": {
+                        "description": "Description of services sold, will be displayed on Consumers monthly bill.",
+                        "type": "string"
+                    },
+                    "price": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "callback": {
+                        "description": "Merchant URL where Fortumo will make callbacks for updating the authorisation status.",
+                        "type": "string"
+                    },
+                    "subscription": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "callbacks": {
+                        "description": "List of URLs where Fortumo will make callbacks to for updating the authorisation status. Should be used instead of callback field.",
+                        "type": "array"
+                    },
+                    "metadata": {
+                        "description": "Allows providing additional key value pairs which will be included in the callbacks.",
+                        "type": "object"
+                    },
+                    "AuthorisationFlow": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "flow": {
+                "type": "object"
+            },
+            "price": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "description": "Amount to be charged. e.g 1.23.",
+                        "type": "number"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "type": "string"
+                    }
+                }
+            },
+            "subscription": {
+                "type": "object",
+                "properties": {
+                    "price": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "item_description": {
+                        "description": "Description of services sold, will be displayed on Consumers monthly bill.",
+                        "type": "string"
+                    },
+                    "duration": {
+                        "description": "After how many days the consumer will be charged again.",
+                        "type": "number"
+                    },
+                    "unit": {
+                        "description": "Reference",
+                        "type": "object"
+                    },
+                    "cycles": {
+                        "description": "For how many cycles consumer will be charged (leave empty for unlimited number of cycles).",
+                        "type": "number"
+                    },
+                    "unsubscribe_url": {
+                        "description": "An URL to where the consumer is sent for unsubscribing.",
+                        "type": "string"
+                    },
+                    "callbacks": {
+                        "description": "List of URLs where Fortumo will make callbacks to for updating the authorisation status. Should be used instead of callback field.",
+                        "type": "array"
+                    },
+                    "payment_callbacks": {
+                        "description": "List of URLs where Fortumo will make callbacks to for payments originated from the subscription.",
+                        "type": "array"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "grace_period": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "promotion": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "metadata": {
+                        "description": "Allows providing additional key value pairs which will be included in the callbacks.",
+                        "type": "object"
+                    },
+                    "GracePeriod": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "callbacks": {
+                "type": "array"
+            },
+            "metadata": {
+                "type": "object"
+            },
+            "AuthorisationFlow": {
+                "type": "object",
+                "properties": {
+                    "pin": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "he": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "AuthorisationFlowPin": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "AuthorisationFlowHe": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "pin": {
+                "type": "object"
+            },
+            "he": {
+                "type": "object"
+            },
+            "AuthorisationFlowPin": {
+                "type": "object",
+                "properties": {
+                    "channel_code": {
+                        "description": "Unique code identifying the payment channel provided by capabilities info.",
+                        "type": "string"
+                    },
+                    "msisdn": {
+                        "description": "Charging identity for mobile payments, usually a mobile phone number in international format, excluding the + sign.",
+                        "type": "string"
+                    },
+                    "code": {
+                        "description": "Unique code identifying the payment channel.",
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthorisationFlowHe": {
+                "type": "object",
+                "properties": {
+                    "channel_code": {
+                        "description": "Unique code identifying the payment channel provided by capabilities info.",
+                        "type": "string"
+                    },
+                    "consumer_ip": {
+                        "description": "IP of end-user's device, used for carrier detection.",
+                        "type": "string"
+                    }
+                }
+            },
+            "ChargingTokenInvalidation": {
+                "type": "object",
+                "properties": {
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "callbacks": {
+                        "description": "List of URLs where Fortumo will make callbacks to for updating the authorisation status. Should be used instead of callback field.",
+                        "type": "array"
+                    },
+                    "reason": {
+                        "description": "Reason of invalidation.",
+                        "type": "string"
+                    }
+                }
+            },
+            "unit": {
+                "type": "object"
+            },
+            "payment_callbacks": {
+                "type": "array"
+            },
+            "grace_period": {
+                "type": "object"
+            },
+            "promotion": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "duration": {
+                        "description": "After how many days the consumer will be charged again.",
+                        "type": "number"
+                    },
+                    "unit": {
+                        "description": "Reference",
+                        "type": "object"
+                    },
+                    "cycles": {
+                        "description": "For how many cycles consumer will be charged (leave empty for unlimited number of cycles).",
+                        "type": "number"
+                    }
+                }
+            },
+            "GracePeriod": {
+                "type": "object",
+                "properties": {
+                    "duration": {
+                        "description": "After how many days the consumer will be charged again.",
+                        "type": "number"
+                    },
+                    "unit": {
+                        "description": "Reference",
+                        "type": "object"
+                    }
+                }
+            },
+            "amount": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "description": "Amount to be charged. e.g 1.23.",
+                        "type": "number"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "type": "string"
+                    }
+                }
+            },
+            "SubscriptionActivation": {
+                "type": "object",
+                "properties": {
+                    "subscription_uuid": {
+                        "description": "Fortumo's identifier of the subscription.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "description": "Allows providing additional key value pairs which will be included in the callbacks.",
+                        "type": "object"
+                    },
+                    "callbacks": {
+                        "description": "List of URLs where Fortumo will make callbacks to for updating the authorisation status. Should be used instead of callback field.",
+                        "type": "array"
+                    }
+                }
+            },
+            "SubscriptionCancel": {
+                "type": "object",
+                "properties": {
+                    "subscription_uuid": {
+                        "description": "Fortumo's identifier of the subscription.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "reason": {
+                        "description": "Reason of invalidation.",
+                        "type": "string"
+                    }
+                }
+            },
+            "Payment": {
+                "type": "object",
+                "properties": {
+                    "item_description": {
+                        "description": "Description of services sold, will be displayed on Consumers monthly bill.",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "charging_token": {
+                        "description": "Token received from Fortumo after authenticating user via Authorisation API",
+                        "type": "string"
+                    },
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "description": "Allows providing additional key value pairs which will be included in the callbacks.",
+                        "type": "object"
+                    },
+                    "callback": {
+                        "description": "Merchant URL where Fortumo will make callbacks for updating the authorisation status.",
+                        "type": "string"
+                    },
+                    "callbacks": {
+                        "description": "List of URLs where Fortumo will make callbacks to for updating the authorisation status. Should be used instead of callback field.",
+                        "type": "array"
+                    }
+                }
+            },
+            "Refund": {
+                "type": "object",
+                "properties": {
+                    "payment_operation_reference": {
+                        "description": "Merchant's operation reference of the payment that is being refunded.",
+                        "type": "string"
+                    },
+                    "refund_reason": {
+                        "description": "Refund reason description.",
+                        "type": "string"
+                    },
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "callback": {
+                        "description": "Merchant URL where Fortumo will make callbacks for updating the authorisation status.",
+                        "type": "string"
+                    }
+                }
+            },
+            "Messaging": {
+                "type": "object",
+                "properties": {
+                    "charging_token": {
+                        "description": "Token received from Fortumo after authenticating user via Authorisation API",
+                        "type": "string"
+                    },
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "message_body": {
+                        "description": "The message that is sent to the Consumer, must follow guidelines set by Payment Provider.",
+                        "type": "string"
+                    },
+                    "message_type": {
+                        "description": "Defines the type of the message. Depending on the type the message does or does not have a price. Possible values: 'receipt', 'reminder', 'marketing'.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "sender": {
+                        "description": "Short Merchant name that, when possible, will be used as SMS sender.",
+                        "type": "string"
+                    },
+                    "callback": {
+                        "description": "Merchant URL where Fortumo will make callbacks for updating the authorisation status.",
+                        "type": "string"
+                    }
+                }
+            },
+            "ReportGenerate": {
+                "type": "object",
+                "properties": {
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "from_date": {
+                        "description": "Start date of the report (format 'YYYYMMDD' eg '20150809').",
+                        "type": "string"
+                    },
+                    "to_date": {
+                        "description": "End date of the report (format 'YYYYMMDD' eg '20150810').",
+                        "type": "string"
+                    },
+                    "callback": {
+                        "description": "Merchant URL where Fortumo will make callbacks for updating the authorisation status.",
+                        "type": "string"
+                    }
+                }
+            },
+            "SettlementDetailedReportGenerate": {
+                "type": "object",
+                "properties": {
+                    "merchant": {
+                        "description": "Merchant ID provided by Fortumo.",
+                        "type": "string"
+                    },
+                    "operation_reference": {
+                        "description": "Unique reference ID generated by the Merchant for operation (authorisation\/charge) correlation.",
+                        "type": "string"
+                    },
+                    "date": {
+                        "description": "Settlement date (format 'YYYY-MM', eg '2015-10).",
+                        "type": "string"
+                    },
+                    "callback": {
+                        "description": "Merchant URL where Fortumo will make callbacks for updating the authorisation status.",
+                        "type": "string"
+                    }
+                }
+            },
+            "MinMax": {
+                "type": "object",
+                "properties": {
+                    "min": {
+                        "description": "Minimum supported value for charging e.g. 0.1.",
+                        "type": "number"
+                    },
+                    "max": {
+                        "description": "Maximum supported value for charging.",
+                        "type": "number"
+                    },
+                    "step": {
+                        "description": "Minor unit that can be charged e.g 0.01 allows charging values of 1.23 and 1.24; step of 1 allows charging 1 and 2.",
+                        "type": "number"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "type": "string"
+                    }
+                }
+            },
+            "HttpStatus": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "description": "Supported HTTP status codes: 200, 400, 500",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
