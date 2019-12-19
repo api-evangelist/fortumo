@@ -1,0 +1,488 @@
+{
+    "id": "4d71c547b2e858be7dbf5b74a272c544",
+    "name": "Fortumo Payments API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "31e830db496d75a106855015263ed717",
+            "name": "Get Capabilities Merchant",
+            "url": "http:\/\/api.fortumo.com\/\/capabilities\/{merchant}",
+            "description": "List of capabilities (payment methods, authorisation and charging flows) for all countries available for the Merchant.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "merchant",
+                    "description": "Merchant ID provided by Fortumo.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "b4a7e51d56afee702a2a38e56fd8a984",
+            "name": "Post Authorisations",
+            "url": "http:\/\/api.fortumo.com\/\/authorisations",
+            "description": "When starting the purchase flow for a Consumer, first their authorisation has to be obtained. A charging token (received through local API) identifies the session. There are different authorisation flows to choose from depending on the payment method and the capabilities of the channel and Consumers device. It is recommended to always implement the PIN authorisation flow at least as a fallback authorisation method as this is the flow that is always available regardless of the payment channel.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "3c3ad74b449373f206a395c71f776f04",
+            "name": "Put Authorisations Charging Token",
+            "url": "http:\/\/api.fortumo.com\/\/authorisations\/{charging_token}",
+            "description": "Updates an ongoing authorisation session object. For example, once the PIN code has been obtained from the Consumer a PUT request shall be used to update the session state. This will trigger the validation and possibly updating the authorisation session state.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "charging_token",
+                    "description": "Charging token received via Fortumo callback to Local API.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "71693ba49d163b3042505d2e2d4a45be",
+            "name": "Post Authorisations Charging Token Invalidate",
+            "url": "http:\/\/api.fortumo.com\/\/authorisations\/{charging_token}\/invalidate",
+            "description": "Invalidates an existing charging token. For example, merchant wants to invalidate a previously received charging token from Fortumo a POST request shall be used to invalidate that token.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "charging_token",
+                    "description": "Charging token received via Fortumo callback to Local API.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "fe99ea6995b93b841ba6b33d55db191d",
+            "name": "Post Payments",
+            "url": "http:\/\/api.fortumo.com\/\/payments",
+            "description": "After Consumer has authorised the Merchant to charge them and Merchant has received a charging_token with a 'verified' status, Merchant can start making Payment requests on behalf of the Consumer in order to charge them for services.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "f3f76a013ca82d910d6fedd356fbce12",
+            "name": "Post Refunds",
+            "url": "http:\/\/api.fortumo.com\/\/refunds",
+            "description": "In case a Consumer needs to be refunded for any charges Merchant has triggered, Merchant can initiate a new refund that will be processed by Fortumo or Payment Provider.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "4976f384c0add33186fc91d740658e07",
+            "name": "Post Messaging",
+            "url": "http:\/\/api.fortumo.com\/\/messaging",
+            "description": "Used in case Consumer needs to be notified of a service related activity, for example about a charge that is about to be triggered by the Merchant in 24h in case of subscription services.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "48da65bfd3f90574b535ee94424cb234",
+            "name": "Post Reports Reconciliation",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/reconciliation",
+            "description": "Reporting API reconciliation endpoint can be used for operational transaction reconciliation between Merchant and Fortumo systems.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "514a043090b391a6cddc092ba97f4105",
+            "name": "Get Reports Reconciliation Merchant Report Token",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/reconciliation\/{merchant}\/{report_token}",
+            "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "merchant",
+                    "description": "Merchant ID provided by Fortumo.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "report_token",
+                    "description": "Report token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "80d031be2a6c548929712e2ac4c08ca0",
+            "name": "Post Reports Revenue Detailed",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/revenue_detailed",
+            "description": "Reporting API detailed revenue report endpoint can be used for long term revenue reporting and reconciliation between Fortumo and Merchant Systems. Full report generation requests can be done for time periods of up to 31 days. This is a \"slow\" report, for real time reconciliation the reconciliation report endpoint should be used.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "e3ad5f1130366c86c4814bbcaf5bdf39",
+            "name": "Get Reports Revenue Detailed Merchant Report Token",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/revenue_detailed\/{merchant}\/{report_token}",
+            "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "merchant",
+                    "description": "Merchant ID provided by Fortumo.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "report_token",
+                    "description": "Report token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "f65e10341f13badab2434812687f6ad4",
+            "name": "Post Reports Revenue",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/revenue",
+            "description": "Reporting API revenue report endpoint can be used for long term aggregated revenue reporting and reconciliation between Fortumo and Merchant Systems. Revenue report requests can be done for time periods of up to 31 days. This is a \"slow\" report, for real time reconciliation the reconciliation report endpoint should be used.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "10ac39fde2603589830f98c221338590",
+            "name": "Get Reports Revenue Merchant Report Token",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/revenue\/{merchant}\/{report_token}",
+            "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "merchant",
+                    "description": "Merchant ID provided by Fortumo.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "report_token",
+                    "description": "Report token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "8185b77bf4d863aa363af3a18ba57516",
+            "name": "Post Reports Settlement Detailed",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/settlement_detailed",
+            "description": "Reporting API settlement report endpoint can be used for settlement period reporting and reconciliation between Fortumo and Merchant Systems. Settlement report requests can be done for a specific settlement month. This is a \"slow\" report, for real time reconciliation the reconciliation report endpoint should be used.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "71bba225fab490b457aa1170d01dda84",
+            "name": "Get Reports Settlement Detailed Merchant Date",
+            "url": "http:\/\/api.fortumo.com\/\/reports\/settlement_detailed\/{merchant}\/{date}",
+            "description": "Returns a redirect to a temporary expiring URL for downloading the report.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "merchant",
+                    "description": "Merchant ID provided by Fortumo.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "date",
+                    "description": "Date as YYYY-MM",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "b94f21593676f3c1465bec3ae18419db",
+            "name": "Post Subscriptions Activation",
+            "url": "http:\/\/api.fortumo.com\/\/subscriptions\/activation",
+            "description": "Activates subscription created during subscription authentication.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        },
+        {
+            "id": "beb513b2b8f5925935061db390413fdc",
+            "name": "Post Subscriptions Cancel",
+            "url": "http:\/\/api.fortumo.com\/\/subscriptions\/cancel",
+            "description": "Cancels subscription.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4d71c547b2e858be7dbf5b74a272c544",
+            "rawModeData": ""
+        }
+    ]
+}
